@@ -13,7 +13,7 @@
 
 🗃️ All rules are created as [skills](https://agentskills.io/specification) and are stored into this [folder](.claude/skills).
 
-📄 The convention to create a skills is specified into the [CLAUDE.md file](CLAUDE.md).
+📄 The convention to create a skills is specified into the [CLAUDE.md](CLAUDE.md) file.
 
 ## Commands
 
