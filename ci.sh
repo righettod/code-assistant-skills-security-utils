@@ -12,6 +12,6 @@ skills_base_folder=".claude/skills"
 for skill_folder in $(ls $skills_base_folder)
 do
     skill_file="$skills_base_folder/$skill_folder/SKILL.md"
-    echo "[+] Validate: $skill_file" 
+    echo "[+] Validate skill file: $skill_file" 
     pyenv/bin/agentskills validate $skill_file
 done
