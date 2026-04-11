@@ -6,7 +6,7 @@
 
 🔬 The idea is to:
 
-1. Convert the collection of proposals from this [project](https://github.com/righettod/code-snippets-security-utils) into **rules**.
+1. Convert interesting proposals from the collection of proposals of this [project](https://github.com/righettod/code-snippets-security-utils) into **rules**.
 2. Allow me to learn how to create instructions for a coding assistant (claude code here) to allow to create secure code at the implementation time.
 
 ## Rules
