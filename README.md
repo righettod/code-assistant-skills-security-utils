@@ -1,4 +1,4 @@
-[![Test](https://github.com/righettod/code-assistant-skills-security-utils/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/righettod/code-assistant-skills-security-utils/actions/workflows/test.yml) ![MadeWitVSCode](https://img.shields.io/static/v1?label=Made%20with&message=VisualStudio%20Code&color=blue&?style=for-the-badge&logo=visualstudio) ![AutomatedWith](https://img.shields.io/static/v1?label=Automated%20with&message=GitHub%20Actions&color=blue&?style=for-the-badge&logo=github)
+[![Validate Skills](https://github.com/righettod/code-assistant-skills-security-utils/actions/workflows/validate.yml/badge.svg?branch=main)](https://github.com/righettod/code-assistant-skills-security-utils/actions/workflows/validate.yml) ![MadeWitVSCode](https://img.shields.io/static/v1?label=Made%20with&message=VisualStudio%20Code&color=blue&?style=for-the-badge&logo=visualstudio) ![AutomatedWith](https://img.shields.io/static/v1?label=Automated%20with&message=GitHub%20Actions&color=blue&?style=for-the-badge&logo=github)
 
 # Description
 
