@@ -1,5 +1,5 @@
 ---
-name: safe-pdf-validation
+name: secure-pdf-validation
 description: Generate secure pdf file validation code. Enforces secure generation of code validating a pdf file. Invoke when writing any pdf file validation related code.
 allowed-tools: Read Grep Glob
 metadata:
