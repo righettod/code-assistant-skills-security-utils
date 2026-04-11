@@ -28,22 +28,23 @@ Do not add fields outside the agentskills.io spec at the top level. Non-standard
 
 Every skill must have:
 
-1. An intro line: *"Apply **all** rules below when generating or reviewing any code related to …"*
+1. An intro line: *"Apply **all** rules below when generating or reviewing any code related to …"*.
 2. A numbered section `## 1. <Topic> (CRITICAL)` containing:
-   - `ALWAYS …` rule statements (language-agnostic)
-   - A Java BAD/GOOD code example illustrating every rule
-3. A `## 2. Output Checklist` section with one checkbox per rule
-4. A `## References` section linking to authoritative sources (OWASP, PortSwigger, etc.)
+   - `ALWAYS …` rule statements (language-agnostic).
+   - A Java BAD/GOOD code example illustrating every rule.
+3. A `## 2. Output Checklist` section with one checkbox per rule.
+4. A `## References` section linking to authoritative sources (OWASP, PortSwigger, etc.).
 
 ### Rule quality checklist
 
 Before adding or modifying a skill, verify:
 
-- Rules are language-agnostic (no Java-only wording)
-- Code examples cover every stated rule — no rule without corresponding code, no code without a matching rule
-- Numeric limits (sizes, counts, depths) are identical in both the rule text and the code constants
-- Code snippets declare all variables they use
-- Security gaps covered: path/input validation, canonical path checks, symlink/hardlink protection where relevant
+- Rules are language-agnostic (no Java-only wording).
+- Code examples cover every stated rule — no rule without corresponding code, no code without a matching rule.
+- Numeric limits (sizes, counts, depths) are identical in both the rule text and the code constants.
+- Code snippets declare all variables they use.
+- Security gaps covered: path/input validation, canonical path checks, symlink/hardlink protection where relevant.
+- Skill follow a consistent `secure-<subject>-<action>` naming pattern.
 
 ## Validation
 
@@ -57,7 +58,7 @@ To validate a skill using the built-in Claude command:
 To check a skill against the agentskills.io spec only:
 
 ```bash
-skills-ref validate .claude/skills/<skill-name>
+agentskills validate .claude/skills/<skill-name>
 ```
 
 The `skills-ref` tool is the reference validator from [agentskills/agentskills](https://github.com/agentskills/agentskills/tree/main/skills-ref).
