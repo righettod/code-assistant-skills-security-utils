@@ -11,6 +11,9 @@
 
 ## Rules
 
+> [!IMPORTANT]
+> Adapt these templates to the specific context of the application because, by default, I applied **a very defensive** approach than perhaps do not match the context of the application and its target security posture.
+
 > [!TIP]
 > A skills catalog is available via the file [skills_catalog.xml](skills_catalog.xml).
 
