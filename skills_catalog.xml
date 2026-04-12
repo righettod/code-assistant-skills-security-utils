@@ -1,1 +1,68 @@
-<root></root>
+<available_skills>
+<skill>
+<name>
+secure-xml-parsing
+</name>
+<description>
+Generate secure XML parsing code. Enforces secure parsing of XML content. Invoke when writing any XML parsing related code.
+</description>
+<location>
+https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.claude/skills/secure-xml-parsing/SKILL.md
+</location>
+</skill>
+<skill>
+<name>
+secure-pdf-validation
+</name>
+<description>
+Generate secure pdf file validation code. Enforces secure generation of code validating a pdf file. Invoke when writing any pdf file validation related code.
+</description>
+<location>
+https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.claude/skills/secure-pdf-validation/SKILL.md
+</location>
+</skill>
+<skill>
+<name>
+secure-log-entry-generation
+</name>
+<description>
+Generate secure log entry generation code. Enforces secure generation of code generating a log entry. Invoke when writing any log entry generation related code.
+</description>
+<location>
+https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.claude/skills/secure-log-entry-generation/SKILL.md
+</location>
+</skill>
+<skill>
+<name>
+secure-image-validation
+</name>
+<description>
+Generate secure image file validation code. Enforces secure generation of code validating an image file. Invoke when writing any image file validation related code.
+</description>
+<location>
+https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.claude/skills/secure-image-validation/SKILL.md
+</location>
+</skill>
+<skill>
+<name>
+secure-csv-generation
+</name>
+<description>
+Generate secure Comma Separated Values (CSV) generation code. Enforces secure generation of Comma Separated Values (CSV) content. Invoke when writing any Comma Separated Values (CSV) generation related code.
+</description>
+<location>
+https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.claude/skills/secure-csv-generation/SKILL.md
+</location>
+</skill>
+<skill>
+<name>
+secure-archive-decompression
+</name>
+<description>
+Generate secure code for archive decompression. Enforces secure decompression of the content. Invoke when writing any archive decompression related code.
+</description>
+<location>
+https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.claude/skills/secure-archive-decompression/SKILL.md
+</location>
+</skill>
+</available_skills>
