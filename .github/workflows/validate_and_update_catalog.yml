@@ -13,9 +13,15 @@ permissions: read-all
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write    
     steps:
     - uses: actions/checkout@v6
     - name: Install system requirements
       run: sudo apt-get update -y && sudo apt-get install -y dos2unix
     - name: Execute tests script
       run: dos2unix ci.sh; chmod +x ci.sh; bash ci.sh
+    - name: Set up Git user
+      run: git config --global user.email "gha@github.com"; git config --global user.name "GHActionBot"
+    - name: Commit update
+      run: git commit -m "Sync the skills catalog" skills_catalog.xml; git push
