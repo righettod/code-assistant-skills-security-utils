@@ -1,4 +1,4 @@
-name: Validate Skills And Update Catalog
+name: Validate skills and update skills catalog
 on:
   workflow_dispatch:
   push:
