@@ -19,7 +19,8 @@ Apply **all** rules below when generating or reviewing any code related to gener
 
 ```java
 // BAD: No validation is applied
-Logger logger = Logger.getLogger(Main.class.getName());
+String userControlledContent = request.getParameter("input");
+Logger logger                = Logger.getLogger(Main.class.getName());
 logger.info(userControlledContent);
 
 // GOOD: All points are applied

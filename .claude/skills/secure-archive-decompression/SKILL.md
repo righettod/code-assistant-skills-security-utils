@@ -22,6 +22,8 @@ Apply **all** rules below when generating or reviewing any code related to archi
 
 ```java
 // BAD: No validation is performed for any points
+String zipFilePath = "archive.zip";
+File   destDir     = new File("/output");
 try (ZipInputStream zis = new ZipInputStream(new FileInputStream(zipFilePath))) {
   ZipEntry entry;
   while ((entry = zis.getNextEntry()) != null) {
@@ -45,6 +47,8 @@ try (ZipInputStream zis = new ZipInputStream(new FileInputStream(zipFilePath))) 
 }
 
 // GOOD: All the points are validated
+String zipFilePath     = "archive.zip";
+File   destDir         = new File("/output");
 int    entryCount      = 0;
 long   totalSize       = 0;
 int    MAX_ENTRIES     = 20;

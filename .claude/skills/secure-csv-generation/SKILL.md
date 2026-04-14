@@ -16,6 +16,8 @@ Apply **all** rules below when generating or reviewing any code related to Comma
 
 ```java
 // BAD: Content of fields are not validated to detect and disable any CSV injection
+  String     filePath = "output.csv";
+  String[][] rows     = {{"Name", "=CMD|' /C calc'!A0"}, {"Bob", "+1234"}};
   try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
           for (String[] row : rows) {
               StringBuilder sb = new StringBuilder();
@@ -31,6 +33,8 @@ Apply **all** rules below when generating or reviewing any code related to Comma
       }
 
 // GOOD: Dangerous characters used in CSV injection are prefixed to disable the injection
+  String     filePath = "output.csv";
+  String[][] rows     = {{"Name", "=CMD|' /C calc'!A0"}, {"Bob", "+1234"}};
   try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
             for (String[] row : rows) {
                 StringBuilder sb = new StringBuilder();

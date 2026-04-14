@@ -18,6 +18,7 @@ Apply **all** rules below when generating or reviewing any code related to valid
 
 ```java
 // BAD: No validation is applied
+File          file  = new File("image.png");
 BufferedImage image = ImageIO.read(file);
 if (image != null) {
     System.out.println("Image loaded successfully!");
@@ -123,7 +124,7 @@ Before finalizing generated code, verify:
 
 - [ ] The file is a real image file.
 - [ ] The image file has no content appended at the end of the image structure (concatenated file).
-- [ ] The image file was resized.
+- [ ] The image file was resized by removing 1px in width and 1px in height.
 
 ## References
 
@@ -132,3 +133,4 @@ Before finalizing generated code, verify:
 - [A generator of weird files (binary polyglots, near polyglots, polymocks...) by Ange Albertini on GitHub](https://github.com/corkami/mitra).
 - [Image Payload Creating/Injecting tools on GitHub](https://github.com/sighook/pixload).
 - [Embed a payload inside a PNG file tools on GitHub](https://github.com/Maldev-Academy/EmbedPayloadInPng).
+- [File Upload Cheat Sheet from OWASP](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html).

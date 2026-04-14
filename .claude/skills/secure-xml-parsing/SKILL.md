@@ -43,7 +43,8 @@ Document doc = builder.parse(new File("data.xml"));
 
 Before finalizing generated code, verify:
 
-- [ ] DTD and External Entities are NOT resolved.
+- [ ] DTD resolution is NOT enabled.
+- [ ] External Entities (general and parameter) are NOT resolved.
 - [ ] Internal Entities are NOT replaced.
 - [ ] XInclude support is explicitly disabled.
 

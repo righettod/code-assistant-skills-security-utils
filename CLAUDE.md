@@ -33,7 +33,7 @@ Every skill must have:
    - `ALWAYS …` rule statements (language-agnostic).
    - A Java BAD/GOOD code example illustrating every rule.
 3. A `## 2. Output Checklist` section with one checkbox per rule.
-4. A `## References` section linking to authoritative sources (OWASP, PortSwigger, etc.).
+4. A `## References` section linking to authoritative sources (OWASP, PortSwigger, NIST, ANSSI, SANS etc.).
 
 ### Rule quality checklist
 
@@ -43,14 +43,14 @@ Before adding or modifying a skill, verify:
 - Code examples cover every stated rule — no rule without corresponding code, no code without a matching rule.
 - Numeric limits (sizes, counts, depths) are identical in both the rule text and the code constants.
 - Code snippets declare all variables they use.
-- Security gaps covered: path/input validation, canonical path checks, symlink/hardlink protection where relevant.
+- Security gaps covered: No case is missing.
 - Skill follow a consistent `secure-<subject>-<action>` naming pattern.
 
 ## Validation
 
 To validate a skill using the built-in Claude command:
 
-```
+```text
 /validate-skill <skill-name>   # validate a single skill
 /validate-skill all            # validate all skills
 ```
