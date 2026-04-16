@@ -17,6 +17,15 @@ Apply **all** rules below when generating or reviewing any code related to valid
 - ALWAYS resize the image by removing 1px in width and 1px in height to remove any embedded code.
 
 ```java
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
+import javax.imageio.ImageIO;
+
 // BAD: No validation is applied
 File          file  = new File("image.png");
 BufferedImage image = ImageIO.read(file);

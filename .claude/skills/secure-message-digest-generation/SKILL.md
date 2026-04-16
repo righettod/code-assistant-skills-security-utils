@@ -20,8 +20,13 @@ Apply **all** rules below when generating or reviewing any code related to messa
 - ALWAYS encode the raw digest bytes as a lowercase hexadecimal string — never return raw bytes or use Base64, as hex is the canonical, human-readable, and interoperable representation for message digests.
 
 ```java
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.HexFormat;
+
 // BAD: Weak algorithm, platform charset, no separator, raw bytes returned
-public byte[] computeDigestInsecure(Object[] values) {
+public byte[] computeDigestInsecure(Object[] values) throws NoSuchAlgorithmException {
     StringBuilder combined = new StringBuilder();
     for (Object value : values) {
         combined.append(value != null ? value.toString() : ""); // no separator — hash collision risk
@@ -32,7 +37,7 @@ public byte[] computeDigestInsecure(Object[] values) {
 }
 
 // GOOD: All rules applied
-public String computeDigestSecure(Object[] values) {
+public String computeDigestSecure(Object[] values) throws NoSuchAlgorithmException {
     StringBuilder combined = new StringBuilder();
     for (Object value : values) {
         // Rule 5: explicit empty string for null/empty — never skip

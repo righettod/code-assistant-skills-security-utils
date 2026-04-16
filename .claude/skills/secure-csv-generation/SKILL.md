@@ -16,44 +16,44 @@ Apply **all** rules below when generating or reviewing any code related to Comma
 
 ```java
 // BAD: Content of fields are not validated to detect and disable any CSV injection
-  String     filePath = "output.csv";
-  String[][] rows     = {{"Name", "=CMD|' /C calc'!A0"}, {"Bob", "+1234"}};
-  try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
-          for (String[] row : rows) {
-              StringBuilder sb = new StringBuilder();
-              for (int i = 0; i < row.length; i++) {
-                  String field = row[i] == null ? "" : row[i];
-                  if (field.contains(",") || field.contains("\"") || field.contains("\n"))
-                      field = "\"" + field.replace("\"", "\"\"") + "\"";
-                  if (i > 0) sb.append(",");
-                  sb.append(field);
-              }
-              writer.println(sb);
-          }
-      }
+String     filePath = "output.csv";
+String[][] rows     = {{"Name", "=CMD|' /C calc'!A0"}, {"Bob", "+1234"}};
+try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
+    for (String[] row : rows) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < row.length; i++) {
+            String field = row[i] == null ? "" : row[i];
+            if (field.contains(",") || field.contains("\"") || field.contains("\n"))
+                field = "\"" + field.replace("\"", "\"\"") + "\"";
+            if (i > 0) sb.append(",");
+            sb.append(field);
+        }
+        writer.println(sb);
+    }
+}
 
 // GOOD: Dangerous characters used in CSV injection are prefixed to disable the injection
-  String     filePath = "output.csv";
-  String[][] rows     = {{"Name", "=CMD|' /C calc'!A0"}, {"Bob", "+1234"}};
-  try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
-            for (String[] row : rows) {
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < row.length; i++) {
-                    String field = row[i] == null ? "" : row[i];
+String     filePath = "output.csv";
+String[][] rows     = {{"Name", "=CMD|' /C calc'!A0"}, {"Bob", "+1234"}};
+try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
+    for (String[] row : rows) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < row.length; i++) {
+            String field = row[i] == null ? "" : row[i];
 
-                    // Prepend single quote to disable CSV injection
-                    if (!field.isEmpty() && "=+-@\t\r".indexOf(field.charAt(0)) >= 0)
-                        field = "'" + field;
+            // Prepend single quote to disable CSV injection
+            if (!field.isEmpty() && "=+-@\t\r".indexOf(field.charAt(0)) >= 0)
+                field = "'" + field;
 
-                    if (field.contains(",") || field.contains("\"") || field.contains("\n"))
-                        field = "\"" + field.replace("\"", "\"\"") + "\"";
+            if (field.contains(",") || field.contains("\"") || field.contains("\n"))
+                field = "\"" + field.replace("\"", "\"\"") + "\"";
 
-                    if (i > 0) sb.append(",");
-                    sb.append(field);
-                }
-                writer.println(sb);
-            }
+            if (i > 0) sb.append(",");
+            sb.append(field);
         }
+        writer.println(sb);
+    }
+}
 ```
 
 ## 2. Output Checklist
