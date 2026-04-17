@@ -56,6 +56,17 @@ https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.cla
 </skill>
 <skill>
 <name>
+secure-email-validation
+</name>
+<description>
+Generate secure email address validation code. Enforces secure generation of code validating an email address. Invoke when writing any email address validation related code.
+</description>
+<location>
+https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.claude/skills/secure-email-validation/SKILL.md
+</location>
+</skill>
+<skill>
+<name>
 secure-csv-generation
 </name>
 <description>
