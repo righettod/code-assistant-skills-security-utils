@@ -161,6 +161,12 @@
           }
 
           /* ── Link ── */
+          .bundle-link {
+            color: #818cf8;
+            text-decoration: none;
+            font-weight: 500;
+          }
+
           .card-link {
             display: inline-flex;
             align-items: center;
@@ -191,22 +197,21 @@
           <div class="badge">Skills Catalog</div>
           <h1>Claude Security Skills</h1>
           <p class="subtitle">Security-focused code-generation skills for Claude Code assistants</p>
+          <p class="subtitle"><a class="bundle-link" href="skills.zip" target="_blank" rel="noopener noreferrer">Download the bundle</a></p>
         </header>
 
         <div style="text-align:center">
           <span class="skill-count">
-            <strong><xsl:value-of select="count(available_skills/skill)"/></strong> skills available (<a href="skills.zip">download the bundle</a>)
+            <strong><xsl:value-of select="count(available_skills/skill)"/></strong> skills available.
           </span>
         </div>
-        
 
         <div class="grid">
           <xsl:apply-templates select="available_skills/skill"/>
         </div>
 
         <footer>
-          Generated from <code>skills_catalog.xml</code> ·
-          <xsl:value-of select="count(available_skills/skill)"/> entries
+          Generated from <a class="bundle-link" href="https://github.com/righettod/code-assistant-skills-security-utils/blob/main/skills_catalog.xml">skills_catalog.xml</a>·
         </footer>
       </body>
     </html>
@@ -217,25 +222,25 @@
        ═══════════════════════════════════════════════ -->
   <xsl:template match="skill">
     <!-- Pick an emoji icon based on the skill name keywords -->
-    <xsl:variable name="name" select="normalize-space(n)"/>
+    <xsl:variable name="skname" select="normalize-space(name)"/>
 
     <div class="card">
       <div class="card-header">
         <div class="icon">
           <xsl:choose>
-            <xsl:when test="contains($name,'xml')">📄</xsl:when>
-            <xsl:when test="contains($name,'pdf')">📑</xsl:when>
-            <xsl:when test="contains($name,'digest') or contains($name,'hash')">🔑</xsl:when>
-            <xsl:when test="contains($name,'log')">📋</xsl:when>
-            <xsl:when test="contains($name,'image')">🖼️</xsl:when>
-            <xsl:when test="contains($name,'email')">✉️</xsl:when>
-            <xsl:when test="contains($name,'csv')">📊</xsl:when>
-            <xsl:when test="contains($name,'archive')">🗜️</xsl:when>
+            <xsl:when test="contains($skname,'xml')">📄</xsl:when>
+            <xsl:when test="contains($skname,'pdf')">📑</xsl:when>
+            <xsl:when test="contains($skname,'digest') or contains($skname,'hash')">🔑</xsl:when>
+            <xsl:when test="contains($skname,'log')">📋</xsl:when>
+            <xsl:when test="contains($skname,'image')">🖼️</xsl:when>
+            <xsl:when test="contains($skname,'email')">✉️</xsl:when>
+            <xsl:when test="contains($skname,'csv')">📊</xsl:when>
+            <xsl:when test="contains($skname,'archive')">📦</xsl:when>
             <xsl:otherwise>🛡️</xsl:otherwise>
           </xsl:choose>
         </div>
         <div>
-          <div class="card-title"><xsl:value-of select="$name"/></div>
+          <div class="card-title"><xsl:value-of select="$skname"/></div>
           <div class="card-subtitle">skill</div>
         </div>
       </div>
