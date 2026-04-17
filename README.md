@@ -14,7 +14,7 @@
 > [!IMPORTANT]
 > Adapt these templates to the specific context of the application because, by default, I applied **a very defensive** approach. Such approach perhaps do not match the context of the application and its target security posture.
 
-> [!INFO]
+> [!NOTE]
 > A bundle to all the skills is available via the file [skills.zip](docs/skills.zip).
 
 > [!TIP]
