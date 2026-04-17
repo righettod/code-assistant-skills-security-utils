@@ -30,4 +30,6 @@ echo "[+] Update the skills catalog HTML representation"
 xsltproc skills_catalog.xsl skills_catalog.xml > docs/index.html
 cd .claude/
 rm ../docs/skills.zip 2>/dev/null
-zip -r ../docs/skills.zip skills/
+date > build-date.txt
+zip -r ../docs/skills.zip build-date.txt skills/ 
+rm build-date.txt

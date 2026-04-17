@@ -20,4 +20,4 @@ jobs:
     - name: Set up Git user
       run: git config --global user.email "gha@github.com"; git config --global user.name "GHActionBot"
     - name: Commit update
-      run: git commit -m "Sync the skills catalog" skills_catalog.xml ci.sh docs/index.html; git push
+      run: git commit -m "Sync the skills catalog" skills_catalog.xml ci.sh docs/index.html docs/skills.zip; git push
