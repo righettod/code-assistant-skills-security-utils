@@ -195,9 +195,10 @@
 
         <div style="text-align:center">
           <span class="skill-count">
-            <strong><xsl:value-of select="count(available_skills/skill)"/></strong> skills available
+            <strong><xsl:value-of select="count(available_skills/skill)"/></strong> skills available (<a href="skills.zip">download the bundle</a>)
           </span>
         </div>
+        
 
         <div class="grid">
           <xsl:apply-templates select="available_skills/skill"/>
