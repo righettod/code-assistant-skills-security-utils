@@ -15,8 +15,8 @@ do
     echo "[+] Validate skill file: $skill_file" 
     pyenv/bin/agentskills validate $skill_file
 done
-# Generate the skills descriptor
-echo "[+] Generate the skills descriptor file" 
+# Update the skills catalog
+echo "[+] Generate the skills descriptor file (catalog)" 
 skills_descriptor="skills_catalog.xml"
 skills_folders=""
 for skill_folder in $(ls $skills_base_folder)
@@ -26,3 +26,5 @@ done
 pyenv/bin/agentskills to-prompt $skills_folders > $skills_descriptor
 sed -i 's|/home/runner/work/code-assistant-skills-security-utils/code-assistant-skills-security-utils|https://github.com/righettod/code-assistant-skills-security-utils/tree/main|g' $skills_descriptor
 cat $skills_descriptor
+echo "[+] Update the skills catalog HTML representation"
+xsltproc skills_catalog.xsl skills_catalog.xml > docs/index.html
