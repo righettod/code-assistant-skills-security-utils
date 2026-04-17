@@ -15,10 +15,10 @@
 > Adapt these templates to the specific context of the application because, by default, I applied **a very defensive** approach. Such approach perhaps do not match the context of the application and its target security posture.
 
 > [!NOTE]
-> A bundle to all the skills is available via the file [skills.zip](docs/skills.zip).
+> A bundle with all the skills is available via this [file](docs/skills.zip).
 
 > [!TIP]
-> A skills catalog is available via the file [skills_catalog.xml](skills_catalog.xml).
+> A skills catalog is available via this [file](skills_catalog.xml).
 
 🗃️ All rules are created as [skills](https://agentskills.io/specification) and are stored into this [folder](.claude/skills).
 

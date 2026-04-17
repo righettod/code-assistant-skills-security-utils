@@ -211,7 +211,7 @@
         </div>
 
         <footer>
-          Generated from <a class="bundle-link" href="https://github.com/righettod/code-assistant-skills-security-utils/blob/main/skills_catalog.xml">skills_catalog.xml</a>·
+          Generated from the file <a class="bundle-link" href="https://github.com/righettod/code-assistant-skills-security-utils/blob/main/skills_catalog.xml"><code>skills_catalog.xml</code></a>·
         </footer>
       </body>
     </html>
