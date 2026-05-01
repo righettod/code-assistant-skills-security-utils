@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
     paths:
     - ".claude/skills/**.md" 
+    - "skills_catalog.xsl" 
 permissions: read-all     
 jobs:
   build:
