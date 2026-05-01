@@ -15,7 +15,7 @@ https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.cla
 secure-relative-url-validation
 </name>
 <description>
-Generate secure relative url validation code. Enforces secure generation of code validating an relative url. Invoke when writing any relative url validation related code.
+Generate secure relative url validation code for open redirect prevention. Intentionally strict — rejects valid but risky relative URL forms such as `../page`, `?query`, and `#anchor`. Invoke when writing any relative url validation related code.
 </description>
 <location>
 https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.claude/skills/secure-relative-url-validation/SKILL.md
