@@ -31,7 +31,20 @@
 - `/validate-skill <SKILL_NAME>` to validate the specified skills against conventions.
 - `/validate-skill` to validate all skills against conventions.
 
+## List & install Skills
+
+🧑‍💻 The tool [skills](https://github.com/vercel-labs/skills) can be used to list and install skills proposed by this repository:
+
+```bash
+# Refer to "https://github.com/vercel-labs/skills/blob/main/README.md" for more installation options
+# List all proposed skills
+npx -q skills@latest add righettod/code-assistant-skills-security-utils --list
+# Install all proposed skills
+npx -q skills@latest add righettod/code-assistant-skills-security-utils
+```
+
 ## References
 
 - <https://agentskills.io/specification>
 - <https://github.com/agentskills/agentskills>
+- <https://github.com/vercel-labs>
