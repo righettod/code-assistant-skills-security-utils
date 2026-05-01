@@ -1,6 +1,6 @@
 ---
 name: secure-relative-url-validation
-description: Generate secure relative url validation code. Enforces secure generation of code validating an relative url. Invoke when writing any relative url validation related code.
+description: Generate secure relative url validation code for open redirect prevention. Intentionally strict — rejects valid but risky relative URL forms such as `../page`, `?query`, and `#anchor`. Invoke when writing any relative url validation related code.
 allowed-tools: Read Grep Glob
 metadata:
   category: security
@@ -15,7 +15,7 @@ Apply **all** rules below when generating or reviewing any code related to valid
 - ALWAYS ensure that the input data is recursively URL decoded prior to be validated. A decoding iteration count threshold of 4 is used and an error must be raised if the threshold is reached.
 - ALWAYS ensure that the input data, once URL decoded, start with one of the following character: slash, letter, number, dash, underscore.
 - ALWAYS ensure that the input data is a valid URL according to the [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986).
-- ALWAYS ensure that URL is not a absolute URL.
+- ALWAYS ensure the URL is not absolute (has no scheme); reject any URL where a scheme is present (e.g. `javascript:`, `ssh://`, `data://`, `ftp://`, `file://`, `https://`).
 - ALWAYS ensure that URL never start with `//`.
 
 ```java
@@ -66,9 +66,9 @@ public static String parseRelativeUrl(String input) {
         throw new IllegalArgumentException("URL is not a valid RFC 3986 URI: " + e.getMessage(), e);
     }
 
-    // Rule: must not be an absolute URL (i.e. must have no scheme)
+    // Rule: must not be absolute — rejects any scheme (javascript:, ssh://, data://, ftp://, file://, https://, etc.)
     if (uri.isAbsolute()) {
-        throw new IllegalArgumentException("URL must not be absolute (must not have a scheme like \"https://\").");
+        throw new IllegalArgumentException("URL must not be absolute (no scheme allowed; e.g. javascript:, ssh://, https:// are all rejected).");
     }
 
     return decoded;
@@ -82,7 +82,7 @@ Before finalizing generated code, verify:
 - [ ] The input data is recursively URL decoded prior to be validated, with a maximum of 4 decode iterations enforced and an error raised if the threshold is reached.
 - [ ] The decoded URL starts with a slash, letter, number, dash, or underscore.
 - [ ] The input data is valid according to the RFC 3986.
-- [ ] The URL is not an absolute one.
+- [ ] The URL is not absolute (no scheme present); any scheme (e.g. `javascript:`, `ssh://`, `data://`, `ftp://`, `file://`, `https://`) is rejected.
 - [ ] The URL do not start with `//`.
 
 ## References
@@ -91,4 +91,5 @@ Before finalizing generated code, verify:
 - [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986).
 - [WHATWG URL Living Standard](https://url.spec.whatwg.org/).
 - [Absolute URLs vs. relative URLs](https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL#absolute_urls_vs._relative_urls).
+- [URI schemes](https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Schemes).
 - [CWE Open Redirect](https://cwe.mitre.org/data/definitions/601.html).
