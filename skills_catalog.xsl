@@ -236,6 +236,7 @@
             <xsl:when test="contains($skname,'email')">✉️</xsl:when>
             <xsl:when test="contains($skname,'csv')">📊</xsl:when>
             <xsl:when test="contains($skname,'archive')">📦</xsl:when>
+            <xsl:when test="contains($skname,'url')">🌍</xsl:when>
             <xsl:otherwise>🛡️</xsl:otherwise>
           </xsl:choose>
         </div>
