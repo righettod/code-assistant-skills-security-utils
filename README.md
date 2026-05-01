@@ -31,7 +31,7 @@
 - `/validate-skill <SKILL_NAME>` to validate the specified skills against conventions.
 - `/validate-skill` to validate all skills against conventions.
 
-## List & install Skills
+## List & install skills
 
 🧑‍💻 The tool [skills](https://github.com/vercel-labs/skills) can be used to list and install skills proposed by this repository:
 
