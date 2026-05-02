@@ -45,6 +45,17 @@ https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.cla
 </skill>
 <skill>
 <name>
+secure-microsoft-excel-validation
+</name>
+<description>
+Generate secure microsoft excel file validation code. Enforces secure generation of code validating a microsoft excel file. Invoke when writing any microsoft excel file validation related code.
+</description>
+<location>
+https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.claude/skills/secure-microsoft-excel-validation/SKILL.md
+</location>
+</skill>
+<skill>
+<name>
 secure-message-digest-generation
 </name>
 <description>
