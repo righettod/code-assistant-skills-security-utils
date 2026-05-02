@@ -33,7 +33,7 @@ Every skill must have:
    - `ALWAYS …` rule statements (language-agnostic).
    - A Java BAD/GOOD code example illustrating every rule.
 3. A `## 2. Output Checklist` section with one checkbox per rule.
-4. A `## References` section linking to authoritative sources (OWASP, PortSwigger, MITRE, NIST, ANSSI, SANS etc.).
+4. A `## References` section linking to authoritative sources (OWASP, PortSwigger, MITRE, NIST, ANSSI, SANS, MICROSOFT etc.).
 
 ### Rule quality checklist
 

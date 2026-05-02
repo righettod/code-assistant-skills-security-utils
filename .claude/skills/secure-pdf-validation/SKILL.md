@@ -13,6 +13,7 @@ Apply **all** rules below when generating or reviewing any code related to valid
 ## 1. PDF file validation (CRITICAL)
 
 - ALWAYS ensure that the file is a real PDF file.
+- ALWAYS ensure that the file size does not exceed 5 megabytes before opening or parsing it.
 - ALWAYS ensure that the PDF file has no file attached.
 - ALWAYS ensure that the PDF file has no XML Forms Architecture (XFA) form embedded.
 - ALWAYS ensure that the PDF file has no JavaScript embedded.
@@ -57,7 +58,14 @@ public class PdfSecurityValidator {
     public static List<String> validate(File file) throws IOException {
         List<String> violations = new ArrayList<>();
 
-        // ── Rule 1: Real PDF ──────────────────────────────────────────────────
+        // ── Rule 1: File size must not exceed 5 MB ───────────────────────────
+        long maxSizeBytes = 5L * 1024 * 1024;
+        if (file.length() > maxSizeBytes) {
+            violations.add("File size exceeds the maximum allowed size of 5 MB. Found: " + file.length() + " bytes.");
+            return violations;
+        }
+
+        // ── Rule 2: Real PDF ──────────────────────────────────────────────────
         byte[] header = new byte[5];
         try (InputStream is = new FileInputStream(file)) {
             if (is.read(header) < 5 || !new String(header).startsWith("%PDF-")) {
@@ -202,6 +210,7 @@ public class PdfSecurityValidator {
 Before finalizing generated code, verify:
 
 - [ ] The file is a real PDF file.
+- [ ] The file size does not exceed 5 megabytes.
 - [ ] The PDF file has no file attached.
 - [ ] The PDF file has no XML Forms Architecture (XFA) form embedded.
 - [ ] The PDF file has no JavaScript embedded.
