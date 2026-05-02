@@ -1,6 +1,6 @@
 ---
 name: secure-microsoft-word-validation
-description: Generate secure microsoft word file validation code. Enforces secure generation of code validating a microsoft word file. Invoke when writing any microsoft word file validation related code.
+description: Generate secure microsoft word file validation code. Enforces secure generation of code validating a microsoft word file. Invoke when writing any microsoft word file validation related code. Remote template references and external linked-image/content relationships are not blocked by this skill so that legitimate Word templates and linked images remain usable. Apply network-level controls or a dedicated content-inspection layer to cover those vectors if needed.
 allowed-tools: Read Grep Glob
 metadata:
   category: security
