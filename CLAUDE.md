@@ -33,7 +33,15 @@ Every skill must have:
    - `ALWAYS …` rule statements (language-agnostic).
    - A Java BAD/GOOD code example illustrating every rule.
 3. A `## 2. Output Checklist` section with one checkbox per rule.
-4. A `## References` section linking to authoritative sources (OWASP, PortSwigger, MITRE, NIST, ANSSI, SANS, MICROSOFT etc.).
+4. A `## References` section linking to one or several of the following authoritative sources: OWASP, PORTSWIGGER, MITRE, NIST, ANSSI, SANS, MICROSOFT, ECMA.
+
+### Code snippet formatting rules
+
+When writing or editing code snippets inside a skill:
+
+- **Never wrap lines at 80 columns.** Write each logical statement on a single line regardless of length.
+- **Never add alignment padding.** Do not insert extra spaces to align operators, arguments, or comments across lines.
+- Let the reader's editor handle soft-wrapping.
 
 ### Rule quality checklist
 
@@ -45,6 +53,7 @@ Before adding or modifying a skill, verify:
 - Code snippets declare all variables they use.
 - Security gaps covered: No case is missing.
 - Skill follow a consistent `secure-<subject>-<action>` naming pattern.
+- Code snippets follow the formatting rules above (no 80-column wrapping, no alignment padding).
 
 ## Validation
 
