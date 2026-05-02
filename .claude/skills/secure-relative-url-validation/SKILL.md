@@ -1,9 +1,11 @@
 ---
 name: secure-relative-url-validation
-description: Generate secure relative url validation code for open redirect prevention. Intentionally strict — rejects valid but risky relative URL forms such as `../page`, `?query`, and `#anchor`. Invoke when writing any relative url validation related code.
+description: Generate secure relative url validation code for open redirect prevention. Enforces secure generation of code validating a relative url. Invoke when writing any relative url validation related code. See "security-considerations" metadata for strict validation behavior.
 allowed-tools: Read Grep Glob
 metadata:
   category: security
+  security-considerations: 
+    - Intentionally strict, it rejects valid but risky relative URL forms such as "../page", "?query", and "#anchor".  
 ---
 
 # Secure URL Validation Code Generation Rules

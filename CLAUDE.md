@@ -20,9 +20,16 @@ description: ...              # what it does and when to invoke it
 allowed-tools: Read Grep Glob # tools the skill may use without approval
 metadata:
   category: security          # all skills in this repo use category: security
+  security-considerations:    # optional, provide information about threats not covered or strictness of controls applied.
+    - ... 
 ```
 
-Do not add fields outside the agentskills.io spec at the top level. Non-standard fields belong under `metadata`.
+Do not add fields outside the `agentskills.io` spec at the top level. Non-standard fields belong under `metadata`.
+
+Mandatory or optional presence of fields in the section `metadata`:
+
+- `security-considerations` is **optional**.
+- `category` is **mandatory**.
 
 ### Body structure
 
@@ -34,6 +41,7 @@ Every skill must have:
    - A Java BAD/GOOD code example illustrating every rule.
 3. A `## 2. Output Checklist` section with one checkbox per rule.
 4. A `## References` section linking to one or several of the following authoritative sources: OWASP, PORTSWIGGER, MITRE, NIST, ANSSI, SANS, MICROSOFT, ECMA.
+5. A *Frontmatter section* fully valid according to the rules defined in the section `Frontmatter (valid fields only)`.
 
 ### Code snippet formatting rules
 
@@ -53,7 +61,7 @@ Before adding or modifying a skill, verify:
 - Code snippets declare all variables they use.
 - Security gaps covered: No case is missing.
 - Skill follow a consistent `secure-<subject>-<action>` naming pattern.
-- Code snippets follow the formatting rules above (no 80-column wrapping, no alignment padding).
+- Code snippets follow the formatting rules defined into the section `Code snippet formatting rules` (no 80-column wrapping, no alignment padding).
 
 ## Validation
 

@@ -24,6 +24,8 @@
 
 📄 The convention to create a skills is specified into the [CLAUDE.md](CLAUDE.md) file.
 
+💡 If a skills has limitations or a specific behavior then it is documented into the `metadata` field named `security-considerations`.
+
 ## Commands
 
 ✅ In *Claude code* use the following commands:
