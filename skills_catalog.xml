@@ -34,6 +34,17 @@ https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.cla
 </skill>
 <skill>
 <name>
+secure-microsoft-word-validation
+</name>
+<description>
+Generate secure microsoft word file validation code. Enforces secure generation of code validating a microsoft word file. Invoke when writing any microsoft word file validation related code.
+</description>
+<location>
+https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.claude/skills/secure-microsoft-word-validation/SKILL.md
+</location>
+</skill>
+<skill>
+<name>
 secure-message-digest-generation
 </name>
 <description>
