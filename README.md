@@ -14,12 +14,6 @@
 > [!IMPORTANT]
 > Adapt these templates to the specific context of the application because, by default, I applied **a very defensive** approach. Such approach perhaps do not match the context of the application and its target security posture.
 
-> [!NOTE]
-> A bundle with all the skills is available via this [file](docs/skills.zip).
-
-> [!TIP]
-> A skills catalog is available via this [file](skills_catalog.xml).
-
 🗃️ All rules are created as [skills](https://agentskills.io/specification) and are stored into this [folder](.claude/skills).
 
 📄 The convention to create a skills is specified into the [CLAUDE.md](CLAUDE.md) file.
@@ -34,6 +28,12 @@
 - `/validate-skill` to validate all skills against conventions.
 
 ## List & install skills
+
+> [!NOTE]
+> A bundle with all the skills is available via this [file](docs/skills.zip).
+
+> [!TIP]
+> A skills catalog is available via this [file](skills_catalog.xml).
 
 🧑‍💻 The tool [skills](https://github.com/vercel-labs/skills) can be used to list and install skills proposed by this repository:
 
