@@ -22,10 +22,7 @@
 
 ## Commands
 
-✅ In *Claude code* use the following commands:
-
-- `/validate-skill <SKILL_NAME>` to validate the specified skills against conventions.
-- `/validate-skill` to validate all skills against conventions.
+✅ In *Claude code* use the command `/validate-skill <SKILL_NAME>` to validate the specified skills against conventions.
 
 ## List & install skills
 
