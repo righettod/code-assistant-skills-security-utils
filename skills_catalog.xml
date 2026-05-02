@@ -15,7 +15,7 @@ https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.cla
 secure-relative-url-validation
 </name>
 <description>
-Generate secure relative url validation code for open redirect prevention. Intentionally strict — rejects valid but risky relative URL forms such as `../page`, `?query`, and `#anchor`. Invoke when writing any relative url validation related code.
+Generate secure relative url validation code for open redirect prevention. Enforces secure generation of code validating a relative url. Invoke when writing any relative url validation related code. See &quot;security-considerations&quot; metadata for strict validation behavior.
 </description>
 <location>
 https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.claude/skills/secure-relative-url-validation/SKILL.md
@@ -37,7 +37,7 @@ https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.cla
 secure-microsoft-word-validation
 </name>
 <description>
-Generate secure microsoft word file validation code. Enforces secure generation of code validating a microsoft word file. Invoke when writing any microsoft word file validation related code. Remote template references and external linked-image/content relationships are not blocked by this skill so that legitimate Word templates and linked images remain usable. Apply network-level controls or a dedicated content-inspection layer to cover those vectors if needed.
+Generate secure microsoft word file validation code. Enforces secure generation of code validating a microsoft word file. Invoke when writing any microsoft word file validation related code. See &quot;security-considerations&quot; metadata for security limitations.
 </description>
 <location>
 https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.claude/skills/secure-microsoft-word-validation/SKILL.md
