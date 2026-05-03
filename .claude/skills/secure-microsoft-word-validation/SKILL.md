@@ -88,17 +88,18 @@ public class SafeWordFileReader {
             // ── CHECK 4: ZIP bomb — total uncompressed size must not exceed 50 MB ──
             long maxUncompressedBytes = 50L * 1024 * 1024;
             long totalUncompressedSize = 0;
-            try (java.util.zip.ZipFile zip = new java.util.zip.ZipFile(file)) {
-                java.util.Enumeration<? extends java.util.zip.ZipEntry> entries = zip.entries();
-                while (entries.hasMoreElements()) {
-                    java.util.zip.ZipEntry entry = entries.nextElement();
-                    long entrySize = entry.getSize();
-                    if (entrySize > 0) {
-                        totalUncompressedSize += entrySize;
+            byte[] drainBuffer = new byte[8192];
+            try (java.util.zip.ZipInputStream zis = new java.util.zip.ZipInputStream(new java.io.BufferedInputStream(new FileInputStream(file)))) {
+                java.util.zip.ZipEntry entry;
+                while ((entry = zis.getNextEntry()) != null) {
+                    int bytesRead;
+                    while ((bytesRead = zis.read(drainBuffer)) != -1) {
+                        totalUncompressedSize += bytesRead;
+                        if (totalUncompressedSize > maxUncompressedBytes) {
+                            throw new SecurityException("File total uncompressed size exceeds the maximum allowed size of 50 MB. Possible ZIP bomb detected.");
+                        }
                     }
-                    if (totalUncompressedSize > maxUncompressedBytes) {
-                        throw new SecurityException("File total uncompressed size exceeds the maximum allowed size of 50 MB. Possible ZIP bomb detected.");
-                    }
+                    zis.closeEntry();
                 }
             }
 
@@ -134,7 +135,7 @@ public class SafeWordFileReader {
                 if (!docParts.isEmpty()) {
                     try (java.io.InputStream docIs = docParts.get(0).getInputStream()) {
                         String docXml = new String(docIs.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8).toUpperCase();
-                        if (docXml.contains("DDEAUTO") || docXml.contains(">DDE ") || docXml.contains(">DDE<")) {
+                        if (java.util.regex.Pattern.compile("\\bDDEAUTO\\b|\\bDDE\\b").matcher(docXml).find()) {
                             throw new SecurityException("File contains DDE (Dynamic Data Exchange) fields. DDE fields are not allowed.");
                         }
                     }

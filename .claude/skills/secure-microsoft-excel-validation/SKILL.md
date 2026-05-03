@@ -22,6 +22,7 @@ Apply **all** rules below when generating or reviewing any code related to valid
 - ALWAYS ensure that the file has no Object Linking and Embedding (OLE) package.
 - ALWAYS ensure that the file has no external data connections.
 - ALWAYS ensure that the file has no external links.
+- ALWAYS ensure that the file has no Dynamic Data Exchange (DDE) formula in cell content.
 
 ```java
 // BAD: No validation is applied
@@ -86,17 +87,18 @@ public class SafeExcelFileReader {
             // ── CHECK 4: ZIP bomb — total uncompressed size must not exceed 50 MB ──
             long maxUncompressedBytes = 50L * 1024 * 1024;
             long totalUncompressedSize = 0;
-            try (java.util.zip.ZipFile zip = new java.util.zip.ZipFile(file)) {
-                java.util.Enumeration<? extends java.util.zip.ZipEntry> entries = zip.entries();
-                while (entries.hasMoreElements()) {
-                    java.util.zip.ZipEntry entry = entries.nextElement();
-                    long entrySize = entry.getSize();
-                    if (entrySize > 0) {
-                        totalUncompressedSize += entrySize;
+            byte[] drainBuffer = new byte[8192];
+            try (java.util.zip.ZipInputStream zis = new java.util.zip.ZipInputStream(new java.io.BufferedInputStream(new FileInputStream(file)))) {
+                java.util.zip.ZipEntry entry;
+                while ((entry = zis.getNextEntry()) != null) {
+                    int bytesRead;
+                    while ((bytesRead = zis.read(drainBuffer)) != -1) {
+                        totalUncompressedSize += bytesRead;
+                        if (totalUncompressedSize > maxUncompressedBytes) {
+                            throw new SecurityException("File total uncompressed size exceeds the maximum allowed size of 50 MB. Possible ZIP bomb detected.");
+                        }
                     }
-                    if (totalUncompressedSize > maxUncompressedBytes) {
-                        throw new SecurityException("File total uncompressed size exceeds the maximum allowed size of 50 MB. Possible ZIP bomb detected.");
-                    }
+                    zis.closeEntry();
                 }
             }
 
@@ -105,6 +107,7 @@ public class SafeExcelFileReader {
             // ── CHECK 7: No embedded OLE/ActiveX objects ──────────────────────
             // ── CHECK 8: No external data connections ─────────────────────────
             // ── CHECK 9: No external links ────────────────────────────────────
+            // ── CHECK 10: No DDE formulas in cell content ─────────────────────
             String oleObjectUri = "http://schemas.openxmlformats.org/officeDocument/2006/relationships/oleObject";
             String activeXUri = "http://schemas.microsoft.com/office/2006/relationships/activeX";
 
@@ -133,6 +136,17 @@ public class SafeExcelFileReader {
                             if (lower.startsWith(oleObjectUri.toLowerCase()) || lower.startsWith(activeXUri.toLowerCase())) {
                                 throw new SecurityException("File contains an embedded OLE object in part: " + part.getPartName() + ". OLE packages are not allowed.");
                             }
+                        }
+                    }
+                }
+
+                java.util.List<PackagePart> sheetParts = pkg.getPartsByName(java.util.regex.Pattern.compile("/xl/worksheets/sheet[0-9]+\\.xml"));
+                java.util.regex.Pattern ddePattern = java.util.regex.Pattern.compile("\\bDDEAUTO\\b|\\bDDE\\b");
+                for (PackagePart sheetPart : sheetParts) {
+                    try (java.io.InputStream sheetIs = sheetPart.getInputStream()) {
+                        String sheetXml = new String(sheetIs.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8).toUpperCase();
+                        if (ddePattern.matcher(sheetXml).find()) {
+                            throw new SecurityException("File contains a DDE formula in sheet: " + sheetPart.getPartName() + ". DDE formulas are not allowed.");
                         }
                     }
                 }
@@ -177,6 +191,7 @@ Before finalizing generated code, verify:
 - [ ] The file has no Object Linking and Embedding (OLE) package.
 - [ ] The file has no external data connections.
 - [ ] The file has no external links.
+- [ ] The file has no Dynamic Data Exchange (DDE) formula in cell content.
 
 ## References
 
