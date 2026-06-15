@@ -89,6 +89,17 @@ https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.cla
 </skill>
 <skill>
 <name>
+secure-http-request-dns-rebinding-prevention
+</name>
+<description>
+Generate secure code for HTTP request preventing exposure to DNS rebinding attack. Enforces HTTP request not exposed to DNS rebinding attack. Invoke when writing HTTP request code that must only target public IP addresses.
+</description>
+<location>
+https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.claude/skills/secure-http-request-dns-rebinding-prevention/SKILL.md
+</location>
+</skill>
+<skill>
+<name>
 secure-email-validation
 </name>
 <description>
