@@ -104,6 +104,6 @@ Before finalizing generated code, verify:
 - [PortSwigger: Server-side request forgery (SSRF)](https://portswigger.net/web-security/ssrf)
 - [MITRE CAPEC-275: DNS Rebinding](https://capec.mitre.org/data/definitions/275.html)
 - [DNS Rebinding](https://en.wikipedia.org/wiki/DNS_rebinding).
-- [DNS rebinding attacks explained: The lookup is coming from inside the house!](https://github.blog/security/application-security/dns-rebinding-attacks-explained-the-lookup-is-coming-from-in-side-the-house/).
-- [What Is DNS Rebinding?](https://www.paloaltonetworks.com/cyberpedia/what-is-dns-rebinding).
+- [DNS rebinding attacks explained: The lookup is coming from inside the house!](https://github.blog/security/application-security/dns-rebinding-attacks-explained-the-lookup-is-coming-from-in-side-the-house/)
+- [What Is DNS Rebinding?](https://www.paloaltonetworks.com/cyberpedia/what-is-dns-rebinding)
 - [RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918)
