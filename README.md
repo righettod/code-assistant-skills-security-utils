@@ -42,8 +42,14 @@ npx -q skills@latest add righettod/code-assistant-skills-security-utils --list
 npx -q skills@latest add righettod/code-assistant-skills-security-utils
 ```
 
+## Security
+
+* The collection of skills is scanned with [NVIDIA/SkillSpector](https://github.com/NVIDIA/SkillSpector) prior to be published.
+* Publishing fail if the risk assessment recommendation computed by SkillSpector is not `SAFE`.
+
 ## References
 
-- <https://agentskills.io/specification>
-- <https://github.com/agentskills/agentskills>
-- <https://github.com/vercel-labs>
+* <https://agentskills.io/specification>
+* <https://github.com/agentskills/agentskills>
+* <https://github.com/vercel-labs>
+* <https://github.com/NVIDIA/SkillSpector>
