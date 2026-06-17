@@ -9,7 +9,7 @@
 1. Convert interesting proposals from the collection of proposals of this [project](https://github.com/righettod/code-snippets-security-utils) into **rules**.
 2. Allow me to learn how to create instructions for a coding assistant (claude code here) to allow to create secure code at the implementation time.
 
-## Rules
+# Rules
 
 > [!IMPORTANT]
 > Adapt these templates to the specific context of the application because, by default, I applied **a very defensive** approach. Such approach perhaps do not match the context of the application and its target security posture.
@@ -20,11 +20,11 @@
 
 💡 If a skill has limitations or a specific behavior then it is documented into the `metadata` field named `security-considerations`.
 
-## Commands
+# Commands
 
 ✅ In *Claude code* use the command `/validate-skill <SKILL_NAME>` to validate the specified skills against conventions.
 
-## List & install skills
+# List & install skills
 
 > [!NOTE]
 > A bundle with all the skills is available via this [file](docs/skills.zip).
@@ -42,12 +42,12 @@ npx -q skills@latest add righettod/code-assistant-skills-security-utils --list
 npx -q skills@latest add righettod/code-assistant-skills-security-utils
 ```
 
-## Security
+# Security
 
 * The collection of skills is scanned with [NVIDIA/SkillSpector](https://github.com/NVIDIA/SkillSpector) prior to be published.
 * Publishing fail if the risk assessment recommendation computed by SkillSpector is not `SAFE`.
 
-## References
+# References
 
 * <https://agentskills.io/specification>
 * <https://github.com/agentskills/agentskills>
