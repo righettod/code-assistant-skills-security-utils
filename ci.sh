@@ -33,3 +33,18 @@ rm ../docs/skills.zip 2>/dev/null
 date > build-date.txt
 zip -r ../docs/skills.zip build-date.txt skills/ 
 rm build-date.txt
+cd ..
+echo "[+] Scan the skills with NVIDIA/SkillSpector"
+git clone --depth 1 https://github.com/NVIDIA/SkillSpector.git /tmp/skillspector
+docker build -t skillspector /tmp/skillspector
+risk_assessment_recommendation=$(docker run --rm -v "$PWD:/scan" skillspector scan /scan/docs/skills.zip --no-llm --format json | jq -r '.risk_assessment.recommendation')
+rm -rf /tmp/skillspector
+if [ "$risk_assessment_recommendation" != "SAFE" ]
+then
+  echo "[!] SkillSpector identified the skills has not safe: $risk_assessment_recommendation"
+  docker run --rm -v "$PWD:/scan" skillspector scan /scan/docs/skills.zip --no-llm
+  exit 1
+else
+  echo "[V] SkillSpector identified the skills has safe!"
+  exit 0
+fi
