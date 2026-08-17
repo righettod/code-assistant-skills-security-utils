@@ -45,7 +45,7 @@ npx -q skills@latest add righettod/code-assistant-skills-security-utils
 # Security
 
 * The collection of skills is scanned with [NVIDIA/SkillSpector](https://github.com/NVIDIA/SkillSpector) prior to be published.
-* Publishing fail if the risk assessment recommendation computed by SkillSpector is not `SAFE`.
+* Publishing fail if *SkillSpector* found issues other than on skill `secure-jwt-validation`: Issues on the skill [secure-jwt-validation](.claude/skills/secure-jwt-validation/SKILL.md) are ignored because this one is clean but it raise findings by *SkillSpector* due to the  type of data handled by the skills (access token so credentials).
 
 # References
 
