@@ -78,6 +78,17 @@ https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.cla
 </skill>
 <skill>
 <name>
+secure-jwt-validation
+</name>
+<description>
+Generate secure validation code for access tokens that use the Json Web Token (JWT) format. Enforces secure generation of code validating a JWT-format access token. Invoke when writing any validation code for an access token that uses the JWT format. See &quot;security-considerations&quot; metadata for security limitations.
+</description>
+<location>
+https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.claude/skills/secure-jwt-validation/SKILL.md
+</location>
+</skill>
+<skill>
+<name>
 secure-image-validation
 </name>
 <description>
