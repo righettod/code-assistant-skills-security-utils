@@ -46,6 +46,8 @@ if [ $issue_found_count -ne 0 ]
 then
   echo "[!] SkillSpector identified $issue_found_count issues:"
   docker run --rm -v "$PWD:/scan" skillspector scan /scan/docs/skills.zip --no-llm --format json | jq '.issues[] | select(.location.file != "skills/secure-jwt-validation/SKILL.md")'
+  echo "[i] Full scan output:"
+  docker run --rm -v "$PWD:/scan" skillspector scan /scan/docs/skills.zip --no-llm
   exit 1
 else
   echo "[V] SkillSpector identified no issue!"
