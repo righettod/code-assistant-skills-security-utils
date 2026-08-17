@@ -21,6 +21,6 @@ for issue in issues:
     ignored_issue_id = (f"|id={issue_id}|category={issue_category}|pattern={issue_pattern}|file={issue_file}|").lower()
     if ignored_issue_id not in IGNORED_ISSUES:
         issues_count += 1
-print(f"{report_data['analysis_completeness']['scanned_components']}/{report_data['analysis_completeness']['total_components']} skills scanned with SkillSpector version {report_data['metadata']['skillspector_version']}.")
+print(f"{report_data['analysis_completeness']['scanned_components']}/{report_data['analysis_completeness']['total_components']} skills scanned with SkillSpector version {report_data['metadata']['skillspector_version']}")
 print(f"{issues_count} issue(s) identified once ignored issues taken in account (issues count used as RC).")
 sys.exit(issues_count)
