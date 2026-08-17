@@ -2,9 +2,8 @@
 ############################################################
 # Script to perform the "Continuous Integration" validation
 ############################################################
-# NOTE: 
-# Issues on the skill "secure-jwt-validation" are ignored because this one is clean but it raise findings 
-# by SkillSpector due to the type of data handled by the skill (access token so credentials).
+# Constants
+SKILLSPECTOR_REPORT_FILE="/tmp/report.json"
 # Create VENV
 python -m venv pyenv
 source pyenv/bin/activate
@@ -40,14 +39,13 @@ cd ..
 echo "[+] Scan the skills with NVIDIA/SkillSpector"
 git clone --depth 1 https://github.com/NVIDIA/SkillSpector.git /tmp/skillspector
 docker build -t skillspector /tmp/skillspector
-issue_found_count=$(docker run --rm -v "$PWD:/scan" skillspector scan /scan/docs/skills.zip --no-llm --format json | jq '[.issues[] | select(.location.file != "skills/secure-jwt-validation/SKILL.md")] | length')
+docker run --rm -v "$PWD:/scan" skillspector scan /scan/docs/skills.zip --no-llm --format json > $SKILLSPECTOR_REPORT_FILE
 rm -rf /tmp/skillspector
-if [ $issue_found_count -ne 0 ]
+python validate-skillspector-scan.py $SKILLSPECTOR_REPORT_FILE
+if [ $? -ne 0 ]
 then
-  echo "[!] SkillSpector identified $issue_found_count issues:"
-  docker run --rm -v "$PWD:/scan" skillspector scan /scan/docs/skills.zip --no-llm --format json | jq '.issues[] | select(.location.file != "skills/secure-jwt-validation/SKILL.md")'
   echo "[i] Full scan output:"
-  docker run --rm -v "$PWD:/scan" skillspector scan /scan/docs/skills.zip --no-llm
+  cat $SKILLSPECTOR_REPORT_FILE
   exit 1
 else
   echo "[V] SkillSpector identified no issue!"
