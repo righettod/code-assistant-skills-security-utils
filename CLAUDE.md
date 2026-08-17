@@ -40,7 +40,7 @@ Every skill must have:
    - `ALWAYS …` rule statements (language-agnostic).
    - A Java BAD/GOOD code example illustrating every rule.
 3. A `## 2. Output Checklist` section with one checkbox per rule.
-4. A `## References` section linking to one or several of the following authoritative sources: OWASP, PORTSWIGGER, MITRE, NIST, ANSSI, SANS, MICROSOFT, ECMA.
+4. A `## References` section linking to one or several of the following authoritative sources: OWASP, PORTSWIGGER, MITRE, NIST, ANSSI, SANS, MICROSOFT, ECMA, PENTESTERLAB.
 5. A *Frontmatter section* fully valid according to the rules defined in the section `Frontmatter (valid fields only)`.
 
 ### Code snippet formatting rules
