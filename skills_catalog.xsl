@@ -228,9 +228,10 @@
       <div class="card-header">
         <div class="icon">
           <xsl:choose>
-            <xsl:when test="contains($skname,'xml')">📄</xsl:when>
-            <xsl:when test="contains($skname,'pdf') or contains($skname,'word') or contains($skname,'excel')">📑</xsl:when>
-            <xsl:when test="contains($skname,'digest') or contains($skname,'hash')">🔑</xsl:when>
+            <xsl:when test="contains($skname,'template')">📝</xsl:when>
+            <xsl:when test="contains($skname,'xml')">🧾</xsl:when>
+            <xsl:when test="contains($skname,'pdf') or contains($skname,'word') or contains($skname,'excel')">📒</xsl:when>
+            <xsl:when test="contains($skname,'digest') or contains($skname,'hash')">🔒</xsl:when>
             <xsl:when test="contains($skname,'log')">📋</xsl:when>
             <xsl:when test="contains($skname,'image')">🖼️</xsl:when>
             <xsl:when test="contains($skname,'email')">✉️</xsl:when>
