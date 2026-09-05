@@ -12,6 +12,17 @@ https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.cla
 </skill>
 <skill>
 <name>
+secure-template-rendering
+</name>
+<description>
+Generate secure template rendering code. Enforces secure usage of template engines to create content. Invoke when writing any code that uses a template engine to generate content.
+</description>
+<location>
+https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.claude/skills/secure-template-rendering/SKILL.md
+</location>
+</skill>
+<skill>
+<name>
 secure-relative-url-validation
 </name>
 <description>
