@@ -220,5 +220,5 @@ Before finalizing generated code, verify:
 ## References
 
 - [XML Forms Architecture information from Wikipedia](https://en.wikipedia.org/wiki/XFA).
-- [Malicious PDF generator project on GitHub](https://github.com/jonaslejon/malicious-pdf).
-- [Example of CVE affecting a pdf parser](https://nvd.nist.gov/vuln/detail/CVE-2025-54988).
+- [Malicious PDF generator project from GitHub](https://github.com/jonaslejon/malicious-pdf).
+- [Example of CVE affecting a PDF parser from NVD](https://nvd.nist.gov/vuln/detail/CVE-2025-54988).

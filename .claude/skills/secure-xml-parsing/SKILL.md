@@ -6,7 +6,7 @@ metadata:
   category: security
 ---
 
-# Secure XML parsing Code Generation Rules
+# Secure XML Parsing Code Generation Rules
 
 Apply **all** rules below when generating or reviewing any code related to xml content parsing.
 

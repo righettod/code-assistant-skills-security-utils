@@ -100,10 +100,10 @@ Before finalizing generated code, verify:
 
 ## References
 
-- [OWASP Server-Side Request Forgery Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html)
-- [PortSwigger: Server-side request forgery (SSRF)](https://portswigger.net/web-security/ssrf)
-- [MITRE CAPEC-275: DNS Rebinding](https://capec.mitre.org/data/definitions/275.html)
-- [DNS Rebinding](https://en.wikipedia.org/wiki/DNS_rebinding).
-- [DNS rebinding attacks explained: The lookup is coming from inside the house!](https://github.blog/security/application-security/dns-rebinding-attacks-explained-the-lookup-is-coming-from-in-side-the-house/)
-- [What Is DNS Rebinding?](https://www.paloaltonetworks.com/cyberpedia/what-is-dns-rebinding)
-- [RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918)
+- [Server-Side Request Forgery Prevention Cheat Sheet from OWASP](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html)
+- [Server-side request forgery (SSRF) from PortSwigger](https://portswigger.net/web-security/ssrf)
+- [DNS Rebinding (CAPEC-275) from MITRE](https://capec.mitre.org/data/definitions/275.html)
+- [DNS Rebinding from Wikipedia](https://en.wikipedia.org/wiki/DNS_rebinding).
+- [DNS rebinding attacks explained from GitHub Security Blog](https://github.blog/security/application-security/dns-rebinding-attacks-explained-the-lookup-is-coming-from-in-side-the-house/)
+- [DNS Rebinding explanation from Palo Alto Networks](https://www.paloaltonetworks.com/cyberpedia/what-is-dns-rebinding)
+- [RFC 1918 - Address Allocation for Private Internets from IETF](https://datatracker.ietf.org/doc/html/rfc1918)

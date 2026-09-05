@@ -51,6 +51,19 @@ When writing or editing code snippets inside a skill:
 - **Never add alignment padding.** Do not insert extra spaces to align operators, arguments, or comments across lines.
 - Let the reader's editor handle soft-wrapping.
 
+### References formatting rules
+
+Every entry in the `## References` section must follow the pattern:
+
+```
+- [<Topic> from <Source>](<url>).
+```
+
+- `<Topic>` is the descriptive title of the resource (e.g. `XXE Prevention Cheat Sheet`, `JWT Attacks`).
+- `<Source>` is the authoritative organization or author (e.g. `OWASP`, `PortSwigger`, `MITRE`, `IETF`, `NIST`, `ECMA`, `Microsoft`, `Wikipedia`, `MDN`, `GitHub`).
+- For numbered standards (RFCs, CWEs, ATT&CK techniques, ECMA specs), include the identifier in the topic: `<Full Name> - RFC N from IETF`, `<Description> (CWE-N) from MITRE`, `<Description> (ATT&CK TN) from MITRE`, `<Full Name> (ECMA-N) from ECMA`.
+- Never use `<Source>: <Topic>`, `by <Source>`, or `on <Source>` formats.
+
 ### Rule quality checklist
 
 Before adding or modifying a skill, verify:

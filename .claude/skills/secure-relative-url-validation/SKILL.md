@@ -90,8 +90,8 @@ Before finalizing generated code, verify:
 ## References
 
 - [Unvalidated Redirects and Forwards Cheat Sheet from OWASP](https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html).
-- [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986).
-- [WHATWG URL Living Standard](https://url.spec.whatwg.org/).
-- [Absolute URLs vs. relative URLs](https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL#absolute_urls_vs._relative_urls).
-- [URI schemes](https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Schemes).
-- [CWE Open Redirect](https://cwe.mitre.org/data/definitions/601.html).
+- [Uniform Resource Identifier (URI): Generic Syntax - RFC 3986 from IETF](https://datatracker.ietf.org/doc/html/rfc3986).
+- [URL Living Standard from WHATWG](https://url.spec.whatwg.org/).
+- [Absolute URLs vs. relative URLs from MDN](https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL#absolute_urls_vs._relative_urls).
+- [URI schemes from MDN](https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Schemes).
+- [Open Redirect (CWE-601) from MITRE](https://cwe.mitre.org/data/definitions/601.html).

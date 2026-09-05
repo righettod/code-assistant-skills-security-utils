@@ -139,7 +139,7 @@ Before finalizing generated code, verify:
 
 - [Example of a Payload Delivered Through Steganography from SANS](https://isc.sans.edu/diary/31892).
 - [Example of attack from Synacktiv](https://www.synacktiv.com/en/publications/persistent-php-payloads-in-pngs-how-to-inject-php-code-in-an-image-and-keep-it-there).
-- [A generator of weird files (binary polyglots, near polyglots, polymocks...) by Ange Albertini on GitHub](https://github.com/corkami/mitra).
-- [Image Payload Creating/Injecting tools on GitHub](https://github.com/sighook/pixload).
-- [Embed a payload inside a PNG file tools on GitHub](https://github.com/Maldev-Academy/EmbedPayloadInPng).
+- [A generator of weird files (binary polyglots, near polyglots, polymocks...) from Ange Albertini](https://github.com/corkami/mitra).
+- [Image Payload Creating/Injecting tools from GitHub](https://github.com/sighook/pixload).
+- [Embed a payload inside a PNG file tools from GitHub](https://github.com/Maldev-Academy/EmbedPayloadInPng).
 - [File Upload Cheat Sheet from OWASP](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html).

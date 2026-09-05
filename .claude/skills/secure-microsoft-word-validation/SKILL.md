@@ -189,11 +189,11 @@ Before finalizing generated code, verify:
 
 ## References
 
-- [ECMA-376 - Office Open XML file formats](https://ecma-international.org/publications-and-standards/standards/ecma-376/)
-- [Learn about file formats](https://support.microsoft.com/en-us/office/learn-about-file-formats-56dc3b55-7681-402e-a727-c59fa0884b30).
-- [Linked objects and embedded objects](https://support.microsoft.com/en-au/office/linked-objects-and-embedded-objects-0bf81db2-8aa3-4148-be4a-c8b6e55e0d7c).
-- [Open XML Formats and file name extensions](https://support.microsoft.com/en-us/office/open-xml-formats-and-file-name-extensions-5200d93c-3449-4380-8e11-31ef14555b18).
-- [OWASP File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html).
-- [MITRE ATT&CK T1059.005 - Visual Basic](https://attack.mitre.org/techniques/T1059/005/).
-- [MITRE ATT&CK T1566.001 - Spearphishing Attachment](https://attack.mitre.org/techniques/T1566/001/).
-- [Microsoft: Macros from the internet are blocked by default](https://learn.microsoft.com/en-us/deployoffice/security/internet-macros-blocked).
+- [Office Open XML file formats (ECMA-376) from ECMA](https://ecma-international.org/publications-and-standards/standards/ecma-376/)
+- [Learn about file formats from Microsoft](https://support.microsoft.com/en-us/office/learn-about-file-formats-56dc3b55-7681-402e-a727-c59fa0884b30).
+- [Linked objects and embedded objects from Microsoft](https://support.microsoft.com/en-au/office/linked-objects-and-embedded-objects-0bf81db2-8aa3-4148-be4a-c8b6e55e0d7c).
+- [Open XML Formats and file name extensions from Microsoft](https://support.microsoft.com/en-us/office/open-xml-formats-and-file-name-extensions-5200d93c-3449-4380-8e11-31ef14555b18).
+- [File Upload Cheat Sheet from OWASP](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html).
+- [Visual Basic (ATT&CK T1059.005) from MITRE](https://attack.mitre.org/techniques/T1059/005/).
+- [Spearphishing Attachment (ATT&CK T1566.001) from MITRE](https://attack.mitre.org/techniques/T1566/001/).
+- [Macros from the internet are blocked by default from Microsoft](https://learn.microsoft.com/en-us/deployoffice/security/internet-macros-blocked).

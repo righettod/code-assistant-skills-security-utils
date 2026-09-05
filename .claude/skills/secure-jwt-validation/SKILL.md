@@ -155,10 +155,10 @@ Before finalizing generated code, verify:
 
 ## References
 
-- [RFC 7519: JSON Web Token (JWT)](https://www.rfc-editor.org/rfc/rfc7519.html).
-- [IANA: JSON Web Token (JWT) Claims](https://www.iana.org/assignments/jwt).
-- [PortSwigger: JWT Attacks](https://portswigger.net/web-security/jwt).
-- [Pentesterlab: JWT Vulnerabilities and Attacks Guide](https://pentesterlab.com/blog/jwt-vulnerabilities-attacks-guide).
-- [OWASP: JWT Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_Cheat_Sheet.html).
-- [MITRE CWE-347: Improper Verification of Cryptographic Signature](https://cwe.mitre.org/data/definitions/347.html).
-- [RFC 9068: JSON Web Token Profile for OAuth 2.0 Access Tokens](https://www.rfc-editor.org/rfc/rfc9068.html).
+- [JSON Web Token (JWT) specification - RFC 7519 from IETF](https://www.rfc-editor.org/rfc/rfc7519.html).
+- [JSON Web Token (JWT) Claims from IANA](https://www.iana.org/assignments/jwt).
+- [JWT Attacks from PortSwigger](https://portswigger.net/web-security/jwt).
+- [JWT Vulnerabilities and Attacks Guide from Pentesterlab](https://pentesterlab.com/blog/jwt-vulnerabilities-attacks-guide).
+- [JWT Security Cheat Sheet from OWASP](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_Cheat_Sheet.html).
+- [Improper Verification of Cryptographic Signature (CWE-347) from MITRE](https://cwe.mitre.org/data/definitions/347.html).
+- [JSON Web Token Profile for OAuth 2.0 Access Tokens - RFC 9068 from IETF](https://www.rfc-editor.org/rfc/rfc9068.html).
