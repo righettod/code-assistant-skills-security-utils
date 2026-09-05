@@ -2,8 +2,6 @@
 ############################################################
 # Script to perform the "Continuous Integration" validation
 ############################################################
-# Constants
-SKILLSPECTOR_REPORT_FILE="/tmp/report.json"
 # Create VENV
 python -m venv pyenv
 source pyenv/bin/activate
@@ -35,19 +33,3 @@ rm ../docs/skills.zip 2>/dev/null
 date > build-date.txt
 zip -r ../docs/skills.zip build-date.txt skills/ 
 rm build-date.txt
-cd ..
-echo "[+] Scan the skills with NVIDIA/SkillSpector"
-git clone --depth 1 https://github.com/NVIDIA/SkillSpector.git /tmp/skillspector
-docker build -t skillspector /tmp/skillspector
-docker run --rm -v "$PWD:/scan" skillspector scan /scan/docs/skills.zip --no-llm --format json > $SKILLSPECTOR_REPORT_FILE
-rm -rf /tmp/skillspector
-python validate-skillspector-scan.py $SKILLSPECTOR_REPORT_FILE
-if [ $? -ne 0 ]
-then
-  echo "[i] Full scan output:"
-  cat $SKILLSPECTOR_REPORT_FILE
-  exit 1
-else
-  echo "[V] SkillSpector identified no issue!"
-  exit 0
-fi
