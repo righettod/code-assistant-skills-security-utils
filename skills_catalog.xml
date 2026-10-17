@@ -23,6 +23,17 @@ https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.cla
 </skill>
 <skill>
 <name>
+secure-saml-response-validation
+</name>
+<description>
+Generate secure validation code validating a SAML response. Enforces secure generation of code validating a SAML response. Invoke when writing any validation code for an SAML response. See &quot;security-considerations&quot; metadata for security limitations.
+</description>
+<location>
+https://github.com/righettod/code-assistant-skills-security-utils/tree/main/.claude/skills/secure-saml-response-validation/SKILL.md
+</location>
+</skill>
+<skill>
+<name>
 secure-relative-url-validation
 </name>
 <description>
