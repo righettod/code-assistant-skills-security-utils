@@ -76,6 +76,5 @@ Before finalizing generated code, verify:
 
 ## References
 
-- [Log forging explanation from Fortify](https://vulncat.fortify.com/en/weakness?q=log%20forging).
 - [Log forging explanation from Snyk](https://learn.snyk.io/lesson/logging-vulnerabilities/?ecosystem=java).
 - [Logging Cheat Sheet from OWASP](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html).

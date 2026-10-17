@@ -137,6 +137,5 @@ Before finalizing generated code, verify:
 - [Research on email address parser bypass from PortSwigger](https://portswigger.net/research/splitting-the-email-atom).
 - [MIME (Multipurpose Internet Mail Extensions) part three:Message Header extensions for Non-ASCII text from IETF](https://datatracker.ietf.org/doc/html/rfc2047).
 - [Syntax of encoded-words from IETF](https://datatracker.ietf.org/doc/html/rfc2047#section-2).
-- [Anatomy of an email address from Jochen Topf](https://www.jochentopf.com/email/address.html).
 - [Email address from Wikipedia](https://en.wikipedia.org/wiki/Email_address).
 - [RFC 5321 - Simple Mail Transfer Protocol (size limits) from IETF](https://datatracker.ietf.org/doc/html/rfc5321#section-4.5.3).

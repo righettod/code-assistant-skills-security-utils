@@ -40,7 +40,7 @@ Every skill must have:
    - `ALWAYS …` rule statements (language-agnostic).
    - A Java BAD/GOOD code example illustrating every rule.
 3. A `## 2. Output Checklist` section with one checkbox per rule.
-4. A `## References` section linking to one or several of the following authoritative sources: OWASP, PORTSWIGGER, MITRE, NIST, ANSSI, SANS, MICROSOFT, ECMA, PENTESTERLAB.
+4. A `## References` section linking to one or several of the following authoritative sources: OWASP, PortSwigger, MITRE, IETF, NIST, ANSSI, SANS, MICROSOFT, ECMA, PENTESTERLAB, Wikipedia, MDN, GitHub, OASIS, WHATWG, IANA, GitHub Security Blog, NVD, WE45, Snyk, SKULLSECURITY, Synacktiv, Palo Alto Networks.
 5. A *Frontmatter section* fully valid according to the rules defined in the section `Frontmatter (valid fields only)`.
 
 ### Code snippet formatting rules
@@ -55,12 +55,35 @@ When writing or editing code snippets inside a skill:
 
 Every entry in the `## References` section must follow the pattern:
 
-```
+```markdown
 - [<Topic> from <Source>](<url>).
 ```
 
 - `<Topic>` is the descriptive title of the resource (e.g. `XXE Prevention Cheat Sheet`, `JWT Attacks`).
-- `<Source>` is the authoritative organization or author (e.g. `OWASP`, `PortSwigger`, `MITRE`, `IETF`, `NIST`, `ECMA`, `Microsoft`, `Wikipedia`, `MDN`, `GitHub`).
+- `<Source>` is the authoritative organization or author. Approved sources and their base URLs:
+  - `OWASP` → `https://owasp.org` / `https://cheatsheetseries.owasp.org`
+  - `PortSwigger` → `https://portswigger.net`
+  - `MITRE` → `https://cwe.mitre.org` / `https://attack.mitre.org`
+  - `IETF` → `https://www.rfc-editor.org` / `https://datatracker.ietf.org`
+  - `NIST` → `https://nvlpubs.nist.gov` / `https://csrc.nist.gov`
+  - `ANSSI` → `https://cyber.gouv.fr`
+  - `SANS` → `https://www.sans.org`
+  - `MICROSOFT` → `https://learn.microsoft.com`
+  - `ECMA` → `https://ecma-international.org`
+  - `PENTESTERLAB` → `https://pentesterlab.com`
+  - `Wikipedia` → `https://en.wikipedia.org`
+  - `MDN` → `https://developer.mozilla.org`
+  - `GitHub` → `https://github.com`
+  - `OASIS` → `https://docs.oasis-open.org`
+  - `WHATWG` → `https://whatwg.org` / `https://url.spec.whatwg.org` / `https://html.spec.whatwg.org`
+  - `IANA` → `https://www.iana.org`
+  - `GitHub Security Blog` → `https://github.blog`
+  - `NVD` → `https://nvd.nist.gov`
+  - `WE45` → `https://www.we45.com`
+  - `Snyk` → `https://snyk.io` / `https://security.snyk.io` / `https://learn.snyk.io`
+  - `SKULLSECURITY` → `https://www.skullsecurity.org`
+  - `Synacktiv` → `https://www.synacktiv.com`
+  - `Palo Alto Networks` → `https://www.paloaltonetworks.com`
 - For numbered standards (RFCs, CWEs, ATT&CK techniques, ECMA specs), include the identifier in the topic: `<Full Name> - RFC N from IETF`, `<Description> (CWE-N) from MITRE`, `<Description> (ATT&CK TN) from MITRE`, `<Full Name> (ECMA-N) from ECMA`.
 - Never use `<Source>: <Topic>`, `by <Source>`, or `on <Source>` formats.
 

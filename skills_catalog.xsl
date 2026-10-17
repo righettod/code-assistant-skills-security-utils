@@ -229,7 +229,7 @@
         <div class="icon">
           <xsl:choose>
             <xsl:when test="contains($skname,'template')">📝</xsl:when>
-            <xsl:when test="contains($skname,'xml')">🧾</xsl:when>
+            <xsl:when test="contains($skname,'xml') or contains($skname,'saml')">🧾</xsl:when>
             <xsl:when test="contains($skname,'pdf') or contains($skname,'word') or contains($skname,'excel')">📒</xsl:when>
             <xsl:when test="contains($skname,'digest') or contains($skname,'hash') or contains($skname,'jwt')">🔒</xsl:when>
             <xsl:when test="contains($skname,'log')">📋</xsl:when>

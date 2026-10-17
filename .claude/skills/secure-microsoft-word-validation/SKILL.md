@@ -189,7 +189,7 @@ Before finalizing generated code, verify:
 
 ## References
 
-- [Office Open XML file formats (ECMA-376) from ECMA](https://ecma-international.org/publications-and-standards/standards/ecma-376/)
+- [Office Open XML file formats (ECMA-376) from ECMA](https://ecma-international.org/publications-and-standards/standards/ecma-376/).
 - [Learn about file formats from Microsoft](https://support.microsoft.com/en-us/office/learn-about-file-formats-56dc3b55-7681-402e-a727-c59fa0884b30).
 - [Linked objects and embedded objects from Microsoft](https://support.microsoft.com/en-au/office/linked-objects-and-embedded-objects-0bf81db2-8aa3-4148-be4a-c8b6e55e0d7c).
 - [Open XML Formats and file name extensions from Microsoft](https://support.microsoft.com/en-us/office/open-xml-formats-and-file-name-extensions-5200d93c-3449-4380-8e11-31ef14555b18).

@@ -70,7 +70,6 @@ Before finalizing generated code, verify:
 
 - [Post-Quantum Cryptography from NIST](https://csrc.nist.gov/projects/post-quantum-cryptography).
 - [SHA-3 Standard: Permutation-Based Hash and Extendable-Output Functions from NIST](https://csrc.nist.gov/pubs/fips/202/final).
-- [Flickr's API Signature Forgery Vulnerability from IOACTIVE](https://www.ioactive.com/wp-content/uploads/2012/08/flickr_api_signature_forgery.pdf).
 - [Everything you need to know about hash length extension attacks from SKULLSECURITY](https://www.skullsecurity.org/2012/everything-you-need-to-know-about-hash-length-extension-attacks).
 - [Cryptographic Storage Cheat Sheet from OWASP](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html).
 - [Hexadecimal from Wikipedia](https://en.wikipedia.org/wiki/Hexadecimal).
