@@ -67,7 +67,7 @@ Every entry in the `## References` section must follow the pattern:
   - `IETF` → `https://www.rfc-editor.org` / `https://datatracker.ietf.org`
   - `NIST` → `https://nvlpubs.nist.gov` / `https://csrc.nist.gov`
   - `ANSSI` → `https://cyber.gouv.fr`
-  - `SANS` → `https://www.sans.org`
+  - `SANS` → `https://www.sans.org` / `https://isc.sans.edu`
   - `MICROSOFT` → `https://learn.microsoft.com`
   - `ECMA` → `https://ecma-international.org`
   - `PENTESTERLAB` → `https://pentesterlab.com`

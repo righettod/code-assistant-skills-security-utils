@@ -4,6 +4,8 @@ description: Generate secure image file validation code. Enforces secure generat
 allowed-tools: Read Grep Glob
 metadata:
   category: security
+  security-considerations:
+    - WebP, AVIF, HEIC, TIFF, and SVG formats are out of scope. SVG in particular must never be accepted via this path as it can carry embedded JavaScript.
 ---
 
 # Secure Image File Validation Code Generation Rules
@@ -15,6 +17,7 @@ Apply **all** rules below when generating or reviewing any code related to valid
 - ALWAYS ensure that the file is a real image file of type `PNG`, `JPEG`, `GIF`, `BMP`.
 - ALWAYS ensure that the image file has no content appended at the end of the image structure (concatenated file).
 - ALWAYS resize the image by removing 1px in width and 1px in height to remove any embedded code.
+- ALWAYS read the image dimensions from metadata only (without fully decoding the pixel data) and reject any image whose width exceeds 4096 px or whose height exceeds 4096 px, to prevent DecompressionBomb denial-of-service attacks.
 
 ```java
 import java.awt.image.BufferedImage;
@@ -24,19 +27,25 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.Iterator;
 import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
 
-// BAD: No validation is applied
-File          file  = new File("image.png");
+// BAD: No validation is applied — no format check, no dimension check, no concatenation check
+File file = new File("image.png");
 BufferedImage image = ImageIO.read(file);
 if (image != null) {
     System.out.println("Image loaded successfully!");
-    System.out.println("Width:  " + image.getWidth() + "px");
+    System.out.println("Width: " + image.getWidth() + "px");
     System.out.println("Height: " + image.getHeight() + "px");
 }
 
 // GOOD: All points are applied
-public class ImageReader {
+public class SecureImageLoader {
+
+    private static final int MAX_WIDTH_PX = 4096;
+    private static final int MAX_HEIGHT_PX = 4096;
 
     public static BufferedImage readImage(String filePath) throws IOException {
         byte[] b = Files.readAllBytes(Path.of(filePath));
@@ -58,11 +67,24 @@ public class ImageReader {
         if (end != b.length)
             throw new IOException("Extra " + (b.length - end) + " byte(s) appended after image.");
 
+        try (ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(b))) {
+            Iterator<ImageReader> readers = ImageIO.getImageReaders(iis);
+            if (!readers.hasNext()) throw new IOException("No ImageReader available for this format.");
+            ImageReader metaReader = readers.next();
+            try {
+                metaReader.setInput(iis, true, true);
+                int w = metaReader.getWidth(0);
+                int h = metaReader.getHeight(0);
+                if (w > MAX_WIDTH_PX || h > MAX_HEIGHT_PX) throw new IOException("Image dimensions " + w + "x" + h + " exceed allowed maximum of " + MAX_WIDTH_PX + "x" + MAX_HEIGHT_PX + " px.");
+            } finally {
+                metaReader.dispose();
+            }
+        }
+
         BufferedImage img = ImageIO.read(new ByteArrayInputStream(b));
         if (img == null)
             throw new IOException("ImageIO failed to decode the image.");
 
-        // Rule 3: strip 1px from width and height to remove any embedded code
         return img.getSubimage(0, 0, img.getWidth() - 1, img.getHeight() - 1);
     }
 
@@ -131,9 +153,10 @@ public class ImageReader {
 
 Before finalizing generated code, verify:
 
-- [ ] The file is a real image file.
+- [ ] The file is a real image file of type PNG, JPEG, GIF, or BMP.
 - [ ] The image file has no content appended at the end of the image structure (concatenated file).
 - [ ] The image file was resized by removing 1px in width and 1px in height.
+- [ ] Image dimensions are read from metadata only (before full decode) and rejected if width or height exceeds 4096 px to prevent DecompressionBomb attacks.
 
 ## References
 
@@ -143,3 +166,5 @@ Before finalizing generated code, verify:
 - [Image Payload Creating/Injecting tools from GitHub](https://github.com/sighook/pixload).
 - [Embed a payload inside a PNG file tools from GitHub](https://github.com/Maldev-Academy/EmbedPayloadInPng).
 - [File Upload Cheat Sheet from OWASP](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html).
+- [Uncontrolled Resource Consumption (CWE-400) from MITRE](https://cwe.mitre.org/data/definitions/400.html).
+- [Decompression Bomb vulnerability details from Snyk](https://security.snyk.io/vuln/SNYK-PYTHON-PILLOW-1080635).
