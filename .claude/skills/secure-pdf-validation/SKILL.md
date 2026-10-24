@@ -4,6 +4,8 @@ description: Generate secure pdf file validation code. Enforces secure generatio
 allowed-tools: Read Grep Glob
 metadata:
   category: security
+  security-considerations:
+    - Encrypted or password-protected PDFs cannot be fully parsed; content-level checks (XFA, JavaScript, attachments, forbidden actions) are silently skipped by the PDF library for encrypted documents. Reject encrypted PDFs outright or treat them as failing validation.
 ---
 
 # Secure PDF File Validation Code Generation Rules
@@ -14,11 +16,13 @@ Apply **all** rules below when generating or reviewing any code related to valid
 
 - ALWAYS ensure that the file is a real PDF file.
 - ALWAYS ensure that the file size does not exceed 5 megabytes before opening or parsing it.
+- ALWAYS ensure that the PDF file is not encrypted or password-protected; reject it immediately if the document reports being encrypted.
 - ALWAYS ensure that the PDF file has no file attached.
 - ALWAYS ensure that the PDF file has no XML Forms Architecture (XFA) form embedded.
 - ALWAYS ensure that the PDF file has no JavaScript embedded.
-- ALWAYS ensure that the PDF file has no links of type `Launch`, `GoToR` or `ImportData`.
+- ALWAYS ensure that the PDF file has no links of type `Launch`, `GoToR`, `ImportData`, `SubmitForm` or `URI`.
 - ALWAYS ensure that the PDF file has no content appended at the end of the PDF structure (concatenated file).
+- ALWAYS resolve PDF name hex escapes (`#XX` → character) before scanning for forbidden name tokens; raw string or byte matching on un-decoded content is insufficient because PDF readers always decode names before interpreting them.
 
 ```java
 // BAD: No validation is applied
@@ -75,9 +79,16 @@ public class PdfSecurityValidator {
         }
 
         try (PDDocument document = Loader.loadPDF(file)) {
+
+            // ── Rule 3: Reject encrypted / password-protected PDFs ────────────
+            if (document.isEncrypted()) {
+                violations.add("PDF is encrypted or password-protected and cannot be safely validated.");
+                return violations;
+            }
+
             PDDocumentCatalog catalog = document.getDocumentCatalog();
 
-            // ── Rule 2: No embedded file attachments ──────────────────────────
+            // ── Rule 4: No embedded file attachments ──────────────────────────
             PDDocumentNameDictionary names = catalog.getNames();
             if (names != null) {
                 PDEmbeddedFilesNameTreeNode embeddedFiles = names.getEmbeddedFiles();
@@ -94,7 +105,7 @@ public class PdfSecurityValidator {
                 }
             }
 
-            // ── Rule 3: No XFA form ───────────────────────────────────────────
+            // ── Rule 5: No XFA form ───────────────────────────────────────────
             PDAcroForm acroForm = catalog.getAcroForm();
             if (acroForm != null) {
                 COSBase xfa = acroForm.getCOSObject().getDictionaryObject(COSName.getPDFName("XFA"));
@@ -102,8 +113,8 @@ public class PdfSecurityValidator {
                     violations.add("PDF contains an embedded XFA (XML Forms Architecture) form.");
             }
 
-            // ── Rule 4 & 5: No JavaScript / No forbidden link actions ─────────
-            Set<String> forbiddenActions = Set.of("Launch", "GoToR", "ImportData");
+            // ── Rule 6 & 7: No JavaScript / No forbidden link actions ─────────
+            Set<String> forbiddenActions = Set.of("Launch", "GoToR", "ImportData", "SubmitForm", "URI");
 
             // Document-level: Names/JavaScript tree
             if (names != null && names.getJavaScript() != null) {
@@ -137,11 +148,11 @@ public class PdfSecurityValidator {
                     for (PDAnnotation annotation : page.getAnnotations()) {
                         COSDictionary annot = annotation.getCOSObject();
 
-                        // Page-level file attachment annotations (Rule 2)
+                        // Page-level file attachment annotations (Rule 4)
                         if (annotation instanceof PDAnnotationFileAttachment)
                             violations.add("PDF contains a page-level file attachment annotation.");
 
-                        // Check annotation actions (Rules 4 & 5)
+                        // Check annotation actions (Rules 6 & 7)
                         for (COSName key : List.of(COSName.A, COSName.getPDFName("AA"))) {
                             String found = findAction(annot.getDictionaryObject(key), Set.of("JavaScript"), forbiddenActions);
                             if (found != null)
@@ -152,7 +163,7 @@ public class PdfSecurityValidator {
             }
         }
 
-        // ── Rule 6: No content appended after %%EOF ───────────────────────────
+        // ── Rule 8: No content appended after %%EOF ───────────────────────────
         byte[] content = Files.readAllBytes(file.toPath());
         String raw = new String(content, java.nio.charset.StandardCharsets.ISO_8859_1);
         int lastEof = raw.lastIndexOf("%%EOF");
@@ -172,9 +183,9 @@ public class PdfSecurityValidator {
      * and returns the action subtype name if it matches any of the provided sets,
      * or null if no match is found.
      *
-     * @param base            the action or AA entry to inspect
-     * @param jsTypes         action S values considered JavaScript (e.g. "JavaScript")
-     * @param forbiddenTypes  action S values that are forbidden links
+     * @param base the action or AA entry to inspect
+     * @param jsTypes action S values considered JavaScript (e.g. "JavaScript")
+     * @param forbiddenTypes action S values that are forbidden links
      */
     private static String findAction(COSBase base, Set<String> jsTypes, Set<String> forbiddenTypes) {
         if (base instanceof COSDictionary dict) {
@@ -183,16 +194,13 @@ public class PdfSecurityValidator {
                 if (jsTypes.contains(name.getName()) || forbiddenTypes.contains(name.getName()))
                     return name.getName();
             }
-            // Recurse into AA sub-entries (e.g. /O, /C, /F, /Bl, /D, /U, /Fo, /Bl, /PC, /PO, /PV)
+            // Recurse into sub-entries (AA triggers, chained Next, etc.) — all keys except S and TYPE
             for (COSName key : dict.keySet()) {
                 if (!key.equals(COSName.S) && !key.equals(COSName.TYPE)) {
                     String found = findAction(dict.getDictionaryObject(key), jsTypes, forbiddenTypes);
                     if (found != null) return found;
                 }
             }
-            // Recurse into chained Next action
-            String next = findAction(dict.getDictionaryObject(COSName.NEXT), jsTypes, forbiddenTypes);
-            if (next != null) return next;
         }
         if (base instanceof COSArray array) {
             for (COSBase item : array) {
@@ -205,20 +213,41 @@ public class PdfSecurityValidator {
 }
 ```
 
+```java
+// BAD: Raw byte search misses hex-encoded names — e.g. /#4Aava#53cript decodes to /JavaScript but is not matched
+byte[] content = Files.readAllBytes(file.toPath());
+String raw = new String(content, java.nio.charset.StandardCharsets.ISO_8859_1);
+boolean dangerous = raw.contains("/JavaScript") || raw.contains("/Launch") || raw.contains("/GoToR") || raw.contains("/ImportData") || raw.contains("/SubmitForm") || raw.contains("/URI");
+
+// GOOD: Use a PDF library whose parser decodes #XX name escapes before comparison
+// COSName.getName() (PDFBox) returns the fully decoded name regardless of how it was stored in the raw bytes
+List<String> violations = new ArrayList<>();
+COSDictionary dict = /* the action dictionary being inspected */;
+Set<String> forbidden = Set.of("JavaScript", "Launch", "GoToR", "ImportData", "SubmitForm", "URI");
+COSBase s = dict.getDictionaryObject(COSName.S);
+if (s instanceof COSName cosName) {
+    String decoded = cosName.getName(); // "JavaScript" even when raw bytes contain /#4Aava#53cript
+    if (forbidden.contains(decoded))
+        violations.add("Forbidden action detected: " + decoded);
+}
+```
+
 ## 2. Output Checklist
 
 Before finalizing generated code, verify:
 
 - [ ] The file is a real PDF file.
 - [ ] The file size does not exceed 5 megabytes.
+- [ ] The PDF file is not encrypted or password-protected.
 - [ ] The PDF file has no file attached.
 - [ ] The PDF file has no XML Forms Architecture (XFA) form embedded.
 - [ ] The PDF file has no JavaScript embedded.
-- [ ] The PDF file has no links of type `Launch`, `GoToR` or `ImportData`.
+- [ ] The PDF file has no links of type `Launch`, `GoToR`, `ImportData`, `SubmitForm` or `URI`.
 - [ ] The PDF file has no content appended at the end of the PDF structure (concatenated file).
+- [ ] PDF name hex escapes (`#XX`) are resolved before scanning for forbidden name tokens — raw byte or string matching is not used alone.
 
 ## References
 
 - [XML Forms Architecture information from Wikipedia](https://en.wikipedia.org/wiki/XFA).
 - [Malicious PDF generator project from GitHub](https://github.com/jonaslejon/malicious-pdf).
-- [Example of CVE affecting a PDF parser from NVD](https://nvd.nist.gov/vuln/detail/CVE-2025-54988).
+- [CVE-2025-54988 - Example of CVE affecting a PDF parser from NVD](https://nvd.nist.gov/vuln/detail/CVE-2025-54988).
